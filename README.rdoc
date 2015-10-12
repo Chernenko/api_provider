@@ -1,8 +1,4 @@
-== README
-Basic Authentication:
-    username: lana
-    password: test123
-
+# README
 Content Type :
    application/xml or application/json
 
@@ -24,32 +20,29 @@ Body:
       <last-name>chernenko</last-name>
     </user>
 
-NOTE : Content Type should be set to application/xml for xml data in body 
-and to application/json for json data in body
+## API Requests:
 
-API Requests:
-
-=> listing users
+### Listing users
    url: http://localhost:3000/api/users
    method: GET
    body : not needed
 
-=> Retrieving User detail
+### Retrieving User detail
   url: http://localhost:3000/api/users/:id 
   method: GET
   body : not needed
 
-=> creating users
+### Creating users
    url: http://localhost:3000/api/users
    method: Post
    Body : It can be xml or json
 
-=> Updating User
+### Updating User
   url: http://localhost:3000/api/users/:id 
   method: PUT
   Body : It can be xml or json
   
-=> Deleting User 
+### Deleting User 
   url: http://localhost:3000/api/users/:id 
   method: DELETE
   body : not needed
