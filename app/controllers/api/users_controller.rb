@@ -1,17 +1,14 @@
 class Api::UsersController < ApplicationController
-  http_basic_authenticate_with :name => "lana", :password => "test123"
-
-  skip_before_filter :authenticate_user! # we do not need devise authentication here
-  before_filter :fetch_user, :except => [:index, :create]
-
- def fetch_user
+ #http_basic_authenticate_with :name => "lana", :password => "test123"
+  before_filter :fetch_user, :except => [:index, :new, :create]
+  def fetch_user
     @user = User.find_by_id(params[:id])
   end
 
   def index
     @users = User.all
     respond_to do |format|
-      format.json { render json: @users }
+      format.json { render json: @users.to_json }
       format.xml { render xml: @users }
     end
   end
@@ -23,12 +20,15 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def new
+    @user = User.new
+  end
+
   def create
     @user = User.new(user_params)
-    @user.temp_password = Devise.friendly_token
     respond_to do |format|
       if @user.save
-        format.json { render json: @user, status: :created }
+        format.json { render json: @user.to_json, status: :created }
         format.xml { render xml: @user, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -61,9 +61,17 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  private
 
-def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, 
-                  :temp_password)
+  def user_params
+    params.permit(:id,:first_name, :last_name, :email)
   end
 end
+
+
+
+
+
+
+
+
