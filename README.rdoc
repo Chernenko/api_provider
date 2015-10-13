@@ -1,7 +1,8 @@
 
-Content Type :
+#Content Type :
    application/xml or application/json
-Body:
+
+#Body:
    You can pass xml or json data in Body
    sample json body
 
@@ -11,14 +12,14 @@ Body:
      "last_name" : "chernenko"
     }
 
-   Sample xml body
+   #Sample xml body
 
     <user>
       <email>"chernenko.lana@gmail.com"</email<first-name>lana</first-name>
       <last-name>chernenko</last-name>
     </user>
 
- API Requests:
+ #API Requests:
 
  Listing users
    url: http://localhost:3000/api/users
@@ -34,6 +35,7 @@ Creating users
    url: http://localhost:3000/api/users
    method: Post
    Body : It can be xml or json
+   Required parameters: email(unique), first_name, last_name
 
 Updating User
   url: http://localhost:3000/api/users/:id 
